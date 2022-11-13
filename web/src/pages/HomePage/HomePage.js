@@ -1,3 +1,8 @@
+import React, { useState } from 'react'
+
+import Select from 'react-select'
+import { stateOptions } from 'web/src/AmericanStates'
+
 import {
   Form,
   TextField,
@@ -48,12 +53,7 @@ const HomePage = () => {
           <Label name="State" errorClassName="error">
             State
           </Label>
-          <TextField
-            name="State"
-            errorClassName="error"
-            validation={{ required: true }}
-          />
-          <FieldError name="State" className="error" />
+          <Select name="color" options={stateOptions} />
 
           <Label name="Acreage" errorClassName="error">
             Acreage
@@ -64,7 +64,6 @@ const HomePage = () => {
             validation={{ required: true, pattern: { value: /^[1-9]\d*$/ } }}
           />
           <FieldError name="Acreage" className="error" />
-
           <Submit>generate price</Submit>
         </Form>
       </>

@@ -1,11 +1,32 @@
-import { Form, TextField, Label, Submit, FieldError } from '@redwoodjs/forms'
-import { MetaTags } from '@redwoodjs/web'
+import {
+  Form,
+  TextField,
+  NumberField,
+  Label,
+  Submit,
+  FieldError,
+} from '@redwoodjs/forms'
+import { MetaTags, useMutation } from '@redwoodjs/web'
 
 import ArticlesCell from 'src/components/ArticlesCell'
 
+const CREATE_GENERATE_PRICE = gql`
+  mutation createGeneratePriceMutation($input: CreateGeneratePriceInput!) {
+    createGeneratePrice(input: $input) {
+      id
+    }
+  }
+`
+
 const HomePage = () => {
+  const [create] = useMutation(CREATE_GENERATE_PRICE)
   const onSubmit = (data) => {
     console.log(data)
+    create({
+      variables: {
+        input: data,
+      },
+    })
   }
 
   return (
@@ -37,7 +58,7 @@ const HomePage = () => {
           <Label name="Acreage" errorClassName="error">
             Acreage
           </Label>
-          <TextField
+          <NumberField
             name="Acreage"
             errorClassName="error"
             validation={{ required: true, pattern: { value: /^[1-9]\d*$/ } }}

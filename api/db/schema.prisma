@@ -32,3 +32,11 @@ model User {
   resetToken          String?
   resetTokenExpiresAt DateTime?
 }
+
+model GeneratePrice {
+  id        Int      @id @default(autoincrement())
+  Activity  String
+  State     String
+  Acreage   Int
+  createdAt DateTime @default(now())
+}

@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 import Select from 'react-select'
 import { stateOptions } from 'web/src/AmericanStates'
 
+import { activityOptions } from 'src/ActivityOptions'
+import 'web/src/pages/HomePage/HomePage.css'
+
 import {
   Form,
   TextField,
@@ -25,7 +28,11 @@ const CREATE_GENERATE_PRICE = gql`
 
 const HomePage = () => {
   const [create] = useMutation(CREATE_GENERATE_PRICE)
+  const [americanState, setAmericanState] = useState(null)
+  const [count, setCount] = useState(0)
+
   const onSubmit = (data) => {
+    data.State = americanState
     console.log(data)
     create({
       variables: {
@@ -40,6 +47,7 @@ const HomePage = () => {
       <>
         <ArticlesCell />
         <Form onSubmit={onSubmit}>
+          {/*
           <Label name="Activity" errorClassName="error">
             Activity
           </Label>
@@ -49,11 +57,31 @@ const HomePage = () => {
             validation={{ required: true }}
           />
           <FieldError name="Activity" className="error" />
-
           <Label name="State" errorClassName="error">
             State
-          </Label>
-          <Select name="color" options={stateOptions} />
+          </Label> */}
+
+          {/* make Activity above State select  */}
+
+          <Select
+            onChange={activityOptions}
+            className="select"
+            value={activityOptions}
+            name="Activity"
+            options={activityOptions}
+            autosize={false}
+            validation={{ required: true }}
+          />
+
+          <Select
+            onChange={setAmericanState}
+            className="select"
+            value={americanState}
+            name="State"
+            options={stateOptions}
+            autosize={false}
+            validation={{ required: true }}
+          />
 
           <Label name="Acreage" errorClassName="error">
             Acreage
@@ -66,6 +94,11 @@ const HomePage = () => {
           <FieldError name="Acreage" className="error" />
           <Submit>generate price</Submit>
         </Form>
+
+        <br />
+        <br />
+        <h1>Count: {count}</h1>
+        <button onClick={() => setCount(count + 1)}>Add count</button>
       </>
     </>
   )

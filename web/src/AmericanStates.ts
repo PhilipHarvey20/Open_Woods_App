@@ -1,4 +1,4 @@
-export const stateOptions: readonly StateOption[] = [
+export const stateOptions = [
   { value: 'AL', label: 'Alabama' },
   { value: 'AK', label: 'Alaska' },
   { value: 'AS', label: 'American Samoa' },

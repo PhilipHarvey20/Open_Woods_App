@@ -79,9 +79,8 @@ const HomePage = () => {
               placeholder="Select State"
               validation={{ required: true }}
             />
-          </div>
 
-          {/*
+            {/*
           <Label name="Activity" errorClassName="error">
             Activity
           </Label>
@@ -96,7 +95,7 @@ const HomePage = () => {
               validation={{ required: true }}
             /> */}
 
-          {/* <Label name="State" errorClassName="error">
+            {/* <Label name="State" errorClassName="error">
               State
             </Label>
             <Select
@@ -110,18 +109,20 @@ const HomePage = () => {
             />
           </div> */}
 
-          {/* Make NumberField below as a react input-number*/}
+            {/* Make Acreage below as a react input-number component*/}
 
-          <Label name="Acreage" errorClassName="error">
-            Acreage
-          </Label>
-          <NumberField
-            name="Acreage"
-            errorClassName="error"
-            validation={{ required: true, pattern: { value: /^[1-9]\d*$/ } }}
-          />
-          <FieldError name="Acreage" className="error" />
-          <Submit>generate price</Submit>
+            <Label name="Acreage" errorClassName="error">
+              Acreage
+            </Label>
+            <NumberField
+              name="Acreage"
+              errorClassName="error"
+              validation={{ required: true, pattern: { value: /^[1-9]\d*$/ } }}
+            />
+            <FieldError name="Acreage" className="error" />
+
+            <Submit>generate price</Submit>
+          </div>
         </Form>
       </>
     </>

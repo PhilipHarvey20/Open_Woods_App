@@ -2,16 +2,25 @@
 
 
 
-/* add react css class basic-select properties to .select class*/
+/* align .select field left */
+
+
+
 
 
 
 
 .select {
 
-    position: relative;
+    float: left;
+    position: left;
     width: 30%;
     float: left;
+    margin-right: 10px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    margin-left: 10px;
+    padding: 10;
 }
 
 

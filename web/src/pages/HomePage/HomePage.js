@@ -3,19 +3,12 @@ import React, { useState } from 'react'
 import Select from 'react-select'
 import { stateOptions } from 'web/src/AmericanStates'
 
-import { activityOptions } from 'src/ActivityOptions'
 import 'web/src/pages/HomePage/HomePage.css'
 
-import {
-  Form,
-  TextField,
-  NumberField,
-  Label,
-  Submit,
-  FieldError,
-} from '@redwoodjs/forms'
+import { Form, NumberField, Label, Submit, FieldError } from '@redwoodjs/forms'
 import { MetaTags, useMutation } from '@redwoodjs/web'
 
+import { activityOptions } from 'src/ActivityOptions'
 import ArticlesCell from 'src/components/ArticlesCell'
 
 const CREATE_GENERATE_PRICE = gql`
@@ -28,7 +21,9 @@ const CREATE_GENERATE_PRICE = gql`
 
 const HomePage = () => {
   const [create] = useMutation(CREATE_GENERATE_PRICE)
+  const [activityOption, setActivityOption] = useState(null)
   const [americanState, setAmericanState] = useState(null)
+
   const [count, setCount] = useState(0)
 
   const onSubmit = (data) => {
@@ -61,27 +56,61 @@ const HomePage = () => {
             State
           </Label> */}
 
-          {/* make Activity above State select  */}
+          {/* display error if form submitted without select value */}
 
-          <Select
-            onChange={activityOptions}
-            className="select"
-            value={activityOptions}
-            name="Activity"
-            options={activityOptions}
-            autosize={false}
-            validation={{ required: true }}
-          />
+          <div className="select">
+            <Label name="Activity" errorClassName="error">
+              Activity
+            </Label>
+            <Select
+              value={activityOption}
+              onChange={setActivityOption}
+              options={activityOptions}
+              placeholder="Select Activity"
+              validation={{ required: true }}
+            />
+            <Label name="State" errorClassName="error">
+              State
+            </Label>
+            <Select
+              value={americanState}
+              onChange={setAmericanState}
+              options={stateOptions}
+              placeholder="Select State"
+              validation={{ required: true }}
+            />
+          </div>
 
-          <Select
-            onChange={setAmericanState}
-            className="select"
-            value={americanState}
-            name="State"
-            options={stateOptions}
-            autosize={false}
-            validation={{ required: true }}
-          />
+          {/*
+          <Label name="Activity" errorClassName="error">
+            Activity
+          </Label>
+          <div className="select">
+            <Select
+              onChange={setActivityOption}
+              className="select"
+              value={activityOption}
+              name="Activity"
+              options={activityOptions}
+              autosize={false}
+              validation={{ required: true }}
+            /> */}
+
+          {/* <Label name="State" errorClassName="error">
+              State
+            </Label>
+            <Select
+              onChange={setAmericanState}
+              className="select"
+              value={americanState}
+              name="State"
+              options={stateOptions}
+              autosize={false}
+              validation={{ required: true }}
+            />
+          </div> */}
+
+          {/* Make NumberField below as a react input-number*/}
 
           <Label name="Acreage" errorClassName="error">
             Acreage
@@ -94,11 +123,6 @@ const HomePage = () => {
           <FieldError name="Acreage" className="error" />
           <Submit>generate price</Submit>
         </Form>
-
-        <br />
-        <br />
-        <h1>Count: {count}</h1>
-        <button onClick={() => setCount(count + 1)}>Add count</button>
       </>
     </>
   )

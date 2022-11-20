@@ -42,22 +42,6 @@ const HomePage = () => {
       <>
         <ArticlesCell />
         <Form onSubmit={onSubmit}>
-          {/*
-          <Label name="Activity" errorClassName="error">
-            Activity
-          </Label>
-          <TextField
-            name="Activity"
-            errorClassName="error"
-            validation={{ required: true }}
-          />
-          <FieldError name="Activity" className="error" />
-          <Label name="State" errorClassName="error">
-            State
-          </Label> */}
-
-          {/* display error if form submitted without select value */}
-
           <div className="select">
             <Label name="Activity" errorClassName="error">
               Activity
@@ -80,37 +64,6 @@ const HomePage = () => {
               validation={{ required: true }}
             />
 
-            {/*
-          <Label name="Activity" errorClassName="error">
-            Activity
-          </Label>
-          <div className="select">
-            <Select
-              onChange={setActivityOption}
-              className="select"
-              value={activityOption}
-              name="Activity"
-              options={activityOptions}
-              autosize={false}
-              validation={{ required: true }}
-            /> */}
-
-            {/* <Label name="State" errorClassName="error">
-              State
-            </Label>
-            <Select
-              onChange={setAmericanState}
-              className="select"
-              value={americanState}
-              name="State"
-              options={stateOptions}
-              autosize={false}
-              validation={{ required: true }}
-            />
-          </div> */}
-
-            {/* Make Acreage below as a react input-number component*/}
-
             <Label name="Acreage" errorClassName="error">
               Acreage
             </Label>
@@ -130,3 +83,9 @@ const HomePage = () => {
 }
 
 export default HomePage
+
+// make homepage background green
+// web/src/pages/HomePage/HomePage.css
+// .select {
+//   background-color: green;
+// }
